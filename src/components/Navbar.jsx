@@ -1,15 +1,21 @@
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import React from "react";
 
+import Signin from "./Signin/Signin";
+
 function NavBar() {
+  
+  
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography sx={{ flexGrow: 1 ,textAlign:"left"}} >Keanu & Nerissa</Typography>
-          <Button color="inherit" >Login</Button>
+          <Typography sx={{ flexGrow: 1, textAlign: "left" }}>
+            Keanu & Nerissa
+          </Typography>
+          <Signin/>
         </Toolbar>
-        
       </AppBar>
     </Box>
   );
