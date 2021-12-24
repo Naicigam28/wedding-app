@@ -10,7 +10,6 @@ import React, { useState, useEffect } from "react";
 import {
   getAuth,
   signInWithEmailAndPassword,
-  browserSessionPersistence,
   setPersistence,
   onAuthStateChanged,
   browserLocalPersistence,
@@ -19,21 +18,19 @@ import { initializeApp, getApps } from "firebase/app";
 import firebaseConfig from "../../Firebase/keys";
 function Signin() {
   const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("***REMOVED***");
-  const [password, setPassword] = useState("***REMOVED***");
+  const [email, setEmail] = useState("k.h.dirkse78@gmail.com");
+  const [password, setPassword] = useState("1208MyQueen!");
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     if (getApps().length < 1) {
       initializeApp(firebaseConfig);
-      onAuthStateChanged(getAuth(),(user) => {
+      onAuthStateChanged(getAuth(), (user) => {
         setCurrentUser(user);
       });
     } else {
       setCurrentUser(getAuth().currentUser);
-     
     }
-    
   }, []);
   const handleLogin = () => {
     const auth = getAuth();
