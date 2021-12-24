@@ -7,39 +7,53 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  browserSessionPersistence,
+  setPersistence,
+  onAuthStateChanged,
+  browserLocalPersistence,
+} from "firebase/auth";
 import { initializeApp, getApps } from "firebase/app";
 import firebaseConfig from "../../Firebase/keys";
 function Signin() {
   const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState("TEST12345");
+  const [email, setEmail] = useState("***REMOVED***");
+  const [password, setPassword] = useState("***REMOVED***");
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     if (getApps().length < 1) {
       initializeApp(firebaseConfig);
+      onAuthStateChanged(getAuth(),(user) => {
+        setCurrentUser(user);
+      });
     } else {
       setCurrentUser(getAuth().currentUser);
+     
     }
+    
   }, []);
   const handleLogin = () => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        setCurrentUser(user);
-        console.log("USER", user);
-        handleClose();
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("ERROR", errorCode, errorMessage);
-        // ..
-      });
+    setPersistence(auth, browserLocalPersistence).then(() => {
+      return signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          setCurrentUser(user);
+          console.log("USER", user);
+          handleClose();
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log("ERROR", errorCode, errorMessage);
+          // ..
+        });
+    });
   };
 
   const handleOpen = () => {
