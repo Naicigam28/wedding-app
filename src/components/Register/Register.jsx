@@ -1,5 +1,5 @@
 import {
-    Alert,
+  Alert,
   Button,
   Dialog,
   DialogActions,
@@ -9,7 +9,12 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import Spinner from "../Spinner/Spinner";
 function Register() {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
@@ -17,40 +22,74 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-
+  const [successPopup, setSuccessPopup] = useState(false);
   const [errorOnRegister, setErrorOnRegister] = useState(false);
   const [error, setError] = useState(false);
+  const [loading,setLoading]= useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleError = (error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+    setLoading(false)
+    setErrorOnRegister(errorMessage);
+    
+  };
+
   const handleRegister = () => {
+    setLoading(true)
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
-        //const user = userCredential.user;
-        // ...
+        updateProfile(auth.currentUser, {
+          displayName: `${name} ${surname}`,
+        })
+          .then(() => {
+            setSuccessPopup("Your profile has been created!. Please Log in");
+          })
+          .catch(handleError).finally(()=>{
+            setLoading(false)
+          });
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode,errorMessage)
-        setErrorOnRegister(errorMessage);
-        // ..
-      });
+      .catch(handleError);
   };
 
   return (
-    <>
+    <>{loading&&<Spinner/>}
+      <Snackbar
+        open={successPopup ? true : false}
+        message={successPopup}
+        autoHideDuration={6000}
+      >
+        <Alert
+          onClose={() => {
+            setSuccessPopup(false);
+          }}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {successPopup}
+        </Alert>
+      </Snackbar>
+
       <Snackbar
         open={errorOnRegister ? true : false}
         message={errorOnRegister}
         autoHideDuration={6000}
       >
-        <Alert onClose={()=>{setErrorOnRegister(false)}} severity="error" sx={{ width: "100%" }}>
+        <Alert
+          onClose={() => {
+            setErrorOnRegister(false);
+          }}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
           {errorOnRegister}
         </Alert>
       </Snackbar>
