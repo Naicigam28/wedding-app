@@ -22,7 +22,7 @@ function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState();
-  const [loading,setLoading]=useState("")
+  const [loading, setLoading] = useState("");
 
   useEffect(() => {
     if (getApps().length < 1) {
@@ -36,25 +36,23 @@ function Signin() {
   }, []);
   const handleLogin = () => {
     const auth = getAuth();
-    setLoading(true)
+    setLoading(true);
     setPersistence(auth, browserLocalPersistence).then(() => {
       return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
           setCurrentUser(user);
-          console.log("USER", user);
           handleClose();
-          // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log("ERROR", errorCode, errorMessage);
-          // ..
-        }).finally(()=>{
-          setLoading(false)
         })
+        .finally(() => {
+          setLoading(false);
+        });
     });
   };
 
@@ -79,7 +77,7 @@ function Signin() {
     </Typography>
   ) : (
     <>
-    {loading&&<Spinner/>}
+      {loading && <Spinner />}
       <Button color="inherit" onClick={handleOpen}>
         Log In
       </Button>

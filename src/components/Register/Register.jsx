@@ -25,7 +25,7 @@ function Register() {
   const [successPopup, setSuccessPopup] = useState(false);
   const [errorOnRegister, setErrorOnRegister] = useState(false);
   const [error, setError] = useState(false);
-  const [loading,setLoading]= useState(false);
+  const [loading, setLoading] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -37,13 +37,12 @@ function Register() {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorCode, errorMessage);
-    setLoading(false)
+    setLoading(false);
     setErrorOnRegister(errorMessage);
-    
   };
 
   const handleRegister = () => {
-    setLoading(true)
+    setLoading(true);
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -53,15 +52,17 @@ function Register() {
           .then(() => {
             setSuccessPopup("Your profile has been created!. Please Log in");
           })
-          .catch(handleError).finally(()=>{
-            setLoading(false)
+          .catch(handleError)
+          .finally(() => {
+            setLoading(false);
           });
       })
       .catch(handleError);
   };
 
   return (
-    <>{loading&&<Spinner/>}
+    <>
+      {loading && <Spinner />}
       <Snackbar
         open={successPopup ? true : false}
         message={successPopup}
@@ -93,9 +94,11 @@ function Register() {
           {errorOnRegister}
         </Alert>
       </Snackbar>
-      <Button color="inherit" onClick={handleOpen}>
-        Register
-      </Button>
+      {!getAuth().currentUser && (
+        <Button color="inherit" onClick={handleOpen}>
+          Register
+        </Button>
+      )}
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogTitle>Register</DialogTitle>
         <Grid
