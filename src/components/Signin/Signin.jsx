@@ -18,9 +18,10 @@ import { initializeApp, getApps } from "firebase/app";
 import firebaseConfig from "../../Firebase/keys";
 function Signin() {
   const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("k.h.dirkse78@gmail.com");
-  const [password, setPassword] = useState("1208MyQueen!");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState();
+  const [loading,setLoading]=useState("")
 
   useEffect(() => {
     if (getApps().length < 1) {
