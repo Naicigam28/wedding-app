@@ -16,6 +16,7 @@ import {
 } from "firebase/auth";
 import { initializeApp, getApps } from "firebase/app";
 import firebaseConfig from "../../Firebase/keys";
+import Spinner from "../Spinner/Spinner";
 function Signin() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
@@ -35,6 +36,7 @@ function Signin() {
   }, []);
   const handleLogin = () => {
     const auth = getAuth();
+    setLoading(true)
     setPersistence(auth, browserLocalPersistence).then(() => {
       return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -50,7 +52,9 @@ function Signin() {
           const errorMessage = error.message;
           console.log("ERROR", errorCode, errorMessage);
           // ..
-        });
+        }).finally(()=>{
+          setLoading(false)
+        })
     });
   };
 
@@ -75,6 +79,7 @@ function Signin() {
     </Typography>
   ) : (
     <>
+    {loading&&<Spinner/>}
       <Button color="inherit" onClick={handleOpen}>
         Log In
       </Button>
