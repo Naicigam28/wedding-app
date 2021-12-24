@@ -11,7 +11,7 @@ function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography sx={{ flexGrow: 1, textAlign: "left" }}>
+          <Typography variant="h3" sx={{ flexGrow: 1, textAlign: "left" }}>
             Keanu & Nerissa
           </Typography>
           <Signin/>

@@ -72,7 +72,7 @@ function Signin() {
   };
 
   return currentUser ? (
-    <Typography color="inherit" textAlign="center" variant="h6">
+    <Typography color="inherit" textAlign="center">
       {currentUser.email}
     </Typography>
   ) : (
