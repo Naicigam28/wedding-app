@@ -2,7 +2,7 @@
   width: 100%; /* width of container */
   height: 45vh; /* height of container */
   overflow: hidden;
-  border: 5px solid black;
+  
   background-color: black;
   background-image: url("../../images/Banner1.png");
   background-size: cover;

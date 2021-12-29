@@ -51,11 +51,11 @@ function SlideShow() {
   }, []);
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{minHeight:"50vh"}}>
         {posts.map((post, index) => {
           return (
             <Grid item md={4} key={index}>
-              <Card>
+              <Card sx={{backgroundColor:index%2==0?"#E8C7C8":"#1974D2"}}>
                 <CardHeader
                   avatar={<Avatar>{post.user[0]}</Avatar>}
                   title={post.title}
