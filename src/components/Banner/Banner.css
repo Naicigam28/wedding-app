@@ -1,6 +1,6 @@
 .Banner {
   width: 100%; /* width of container */
-  height: 400px; /* height of container */
+  height: 45vh; /* height of container */
   overflow: hidden;
   border: 5px solid black;
   background-color: black;

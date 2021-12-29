@@ -34,6 +34,7 @@ function UploadDialog() {
     uploadFile(file)
       .then((res) => {
         writeMessage(message,title, res.metadata.fullPath);
+        handleClose()
       })
       .finally(() => {
         setLoading(false);

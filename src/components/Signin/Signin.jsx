@@ -32,6 +32,9 @@ function Signin() {
       });
     } else {
       setCurrentUser(getAuth().currentUser);
+      onAuthStateChanged(getAuth(), (user) => {
+        setCurrentUser(user);
+      });
     }
   }, []);
   const handleLogin = () => {
