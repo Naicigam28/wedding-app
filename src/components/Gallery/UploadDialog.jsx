@@ -15,8 +15,9 @@ import Spinner from "../Spinner/Spinner";
 function UploadDialog() {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [loading,setLoading]=useState(false)
-  const [file,setFile]=useState()
+  const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState();
 
   const handleOpen = () => {
     setOpen(true);
@@ -25,26 +26,29 @@ function UploadDialog() {
     setOpen(false);
   };
 
-  const handleFile=(e)=>{
-    setFile(e.target.files[0])
-  }
-  const handlePost = (e) => {
-    setLoading(true)
-    uploadFile(file).then(res=>{
-      writeMessage(message,res.metadata.fullPath)
-    }).finally(()=>{
-      setLoading(false)
-    })
-    
-
-    
+  const handleFile = (e) => {
+    setFile(e.target.files[0]);
   };
-  const handleMessage=e=>{
-    setMessage(e.target.value)
-  }
+  const handlePost = (e) => {
+    setLoading(true);
+    uploadFile(file)
+      .then((res) => {
+        writeMessage(message,title, res.metadata.fullPath);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  const handleMessage = (e) => {
+    setMessage(e.target.value);
+  };
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
   return (
     <>
-    {loading && <Spinner />}
+      {loading && <Spinner />}
       <Button onClick={handleOpen}>Add A picture</Button>
       <Dialog
         open={open}
@@ -64,12 +68,32 @@ function UploadDialog() {
           alignContent="center"
         >
           <Grid item xs={12}>
-            <TextField value={message} onChange={handleMessage} fullWidth multiline rows={4} />
+            <TextField
+              value={title}
+              onChange={handleTitle}
+              fullWidth
+              label="Title"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Message"
+              value={message}
+              onChange={handleMessage}
+              fullWidth
+              multiline
+              rows={4}
+            />
           </Grid>
 
           <Grid item xs={12}>
             <Typography>Add an Image:</Typography>
-            <input onChange={handleFile} type="file" accept="image/*" id="file-input" />
+            <input
+              onChange={handleFile}
+              type="file"
+              accept="image/*"
+              id="file-input"
+            />
           </Grid>
         </Grid>
         <DialogActions>
