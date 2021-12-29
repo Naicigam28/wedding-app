@@ -55,7 +55,7 @@ function SlideShow() {
         {posts.map((post, index) => {
           return (
             <Grid item md={4} key={index}>
-              <Card sx={{backgroundColor:index%2==0?"#E8C7C8":"#1974D2"}}>
+              <Card sx={{backgroundColor:"#E8C7C8"}}>
                 <CardHeader
                   avatar={<Avatar>{post.user[0]}</Avatar>}
                   title={post.title}
