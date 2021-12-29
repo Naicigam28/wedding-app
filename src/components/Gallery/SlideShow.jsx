@@ -23,7 +23,7 @@ function SlideShow() {
     const postsRef = ref(db, `posts`);
     onValue(postsRef, async (snapshot) => {
       let data = [];
-      for (const [key, value] of Object.entries(snapshot.val())) {
+      for (const [, value] of Object.entries(snapshot.val())) {
         for (const [postKey, postValue] of Object.entries(value)) {
           data.push({ date: postKey, ...postValue ,url: await getFileURL(postValue.path)});
         }
@@ -35,9 +35,9 @@ function SlideShow() {
   return (
     <>
       <Grid container spacing={2}>
-        {posts.map((post) => {
+        {posts.map((post,index) => {
           return (
-            <Grid item xs={4}>
+            <Grid item xs={4} key={index}>
               <Card >
                 <CardHeader
                   avatar={<Avatar>{post.user[0]}</Avatar>}
