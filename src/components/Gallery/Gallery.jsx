@@ -7,10 +7,10 @@ function Gallery() {
   return (
     <>
       <Grid container>
-        <Grid item xs={10}>
+        <Grid item md={10}>
           <Typography variant="h4">Gallery</Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item md={2}>
           <UploadDialog />
         </Grid>
       </Grid>
