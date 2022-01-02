@@ -3,9 +3,9 @@ import React from "react";
 import "./Banner.css";
 function Banner() {
   return (
-    <Grid container className="Banner" justifyItems={"center"} >
+    <Grid container >
       <Grid item md={6}>
-        <div className="Banner-Img">
+        <div className="Banner">
           <img
             className="BannerImg"
             src="/Banner1.png"

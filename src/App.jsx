@@ -18,12 +18,16 @@ function App() {
   }, []);
   return (
     <ThemeProvider theme={theme}>
-         <CssBaseline />
+      <CssBaseline />
       <div className="App">
         <NavBar />
+        <hr />
         <Banner />
+
         <Register />
+        <hr />
         <Gallery />
+        <hr />
         <Youtube />
       </div>
     </ThemeProvider>

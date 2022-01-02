@@ -1,14 +1,20 @@
 .Banner {
-  width: 100%; /* width of container */
-  height: 45vh; /* height of container */
+  width: 100%;
+  height: 45vh;
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  
 }
 .Banner img {
   margin: -100px 0px 0px -10px;
+  
 }
-.Banner-Text{
-padding: 10%;
+.Banner-Text {
+  padding: 10%;
+}
+@media screen and (max-width: 480px) {
+  .Banner img {
+    margin: -111px -255px 0px -260px;
+    padding: 50px;
+  text-align: center;
+}
 }

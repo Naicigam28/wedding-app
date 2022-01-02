@@ -8,7 +8,7 @@ function NavBar() {
   
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 ,marginBottom:"10px"}}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h3" sx={{ flexGrow: 1, textAlign: "left" }}>

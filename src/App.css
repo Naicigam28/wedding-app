@@ -1,11 +1,5 @@
 .App {
   text-align: center;
-  font-family: fantasy;
-  background-color: white;
-  /* background-image: url("./images/Banner4.png"); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .App-logo {

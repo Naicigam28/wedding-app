@@ -50,7 +50,7 @@ function UploadDialog() {
   return (
     <>
       {loading && <Spinner />}
-      <Button onClick={handleOpen}>Add A picture</Button>
+      <Button variant="outlined" onClick={handleOpen}>Add A picture</Button>
       <Dialog
         open={open}
         onClose={handleClose}

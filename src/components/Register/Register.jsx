@@ -107,7 +107,7 @@ function Register() {
           spacing={2}
           style={{ padding: "5px" }}
         >
-          <Grid item xs={6}>
+          <Grid item md={6}>
             <TextField
               fullWidth
               label="First Name"
@@ -117,7 +117,7 @@ function Register() {
               }}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item md={6}>
             <TextField
               fullWidth
               label="Last Name"
@@ -127,7 +127,7 @@ function Register() {
               }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item md={12}>
             <TextField
               fullWidth
               label="Email"
@@ -137,7 +137,7 @@ function Register() {
               }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item md={12}>
             <TextField
               fullWidth
               label="Password"
@@ -148,7 +148,7 @@ function Register() {
               }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item md={12}>
             <TextField
               fullWidth
               error={error}

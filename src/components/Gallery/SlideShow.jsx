@@ -57,7 +57,10 @@ function SlideShow() {
   return (
     <>
    {loading&&<Spinner/>} 
-      <Grid container spacing={2} sx={{minHeight:"50vh"}}>
+      <Grid container
+  direction="row"
+  justifyContent="center"
+  alignItems="center" justifyItems={"center"} spacing={2} sx={{minHeight:"50vh"}}>
         {posts.map((post, index) => {
           return (
             <Grid item md={4} key={index}>
@@ -69,7 +72,7 @@ function SlideShow() {
                 />
                 <CardMedia
                   component="img"
-                  sx={{ width: "100%", height: 500 ,objectFit: "contain"}}
+                  sx={{ minWidth:"50vh", width: "100%", height: 500 ,objectFit: "contain"}}
                   image={post.url}
                 />
                 
@@ -81,7 +84,7 @@ function SlideShow() {
                   aria-expanded={expanded === index}
                   aria-label="show more"
                 >
-                  {expanded !== index && <Typography>Read message</Typography>}
+                  {expanded !== index && <Typography variant="subtitle1">Read message</Typography>}
                   <ExpandMoreIcon />
                 </ExpandMore>
                 <Collapse in={expanded === index} timeout="auto" unmountOnExit>
