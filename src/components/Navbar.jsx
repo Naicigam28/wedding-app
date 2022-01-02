@@ -2,7 +2,7 @@ import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import React from "react";
 
 import Signin from "./Signin/Signin";
-
+import "./NavBar.css"
 function NavBar() {
   
   

@@ -2,13 +2,13 @@
   width: 100%; /* width of container */
   height: 45vh; /* height of container */
   overflow: hidden;
-  
-  background-color: black;
-  background-image: url("../../images/Banner1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 .Banner img {
   margin: -100px 0px 0px -10px;
+}
+.Banner-Text{
+padding: 10%;
 }
