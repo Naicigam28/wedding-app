@@ -1,7 +1,7 @@
 import {
   Avatar,
   Card,
-  CardContent,
+  
   CardHeader,
   CardMedia,
   Grid,
@@ -16,10 +16,13 @@ import firebaseConfig from "../../Firebase/keys";
 import { getFileURL } from "../../Firebase/storage";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
+import Spinner from "../Spinner/Spinner";
+
 function SlideShow() {
   const [posts, setPost] = useState([]);
   const [expanded, setExpanded] = React.useState(-1);
-
+  const [loading,setLoading]=useState(false)
+  
   const handleExpandClick = (index) => {
     if (index !== expanded) {
       setExpanded(index);
@@ -29,6 +32,7 @@ function SlideShow() {
     }
   };
   useEffect(() => {
+    setLoading(true)
     if (getApps().length === 0) {
       initializeApp(firebaseConfig);
     }
@@ -47,10 +51,12 @@ function SlideShow() {
       }
       console.log(data);
       setPost(data);
+      setLoading(false)
     });
   }, []);
   return (
     <>
+   {loading&&<Spinner/>} 
       <Grid container spacing={2} sx={{minHeight:"50vh"}}>
         {posts.map((post, index) => {
           return (
